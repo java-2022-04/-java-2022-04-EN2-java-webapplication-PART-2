@@ -20,7 +20,6 @@ public class MyController {
     @ResponseBody
     public String addsStudent(@RequestParam String name) {
         Student student = new Student();
-        student.setId(1L);
         student.setName(name);
         studentRepository.save(student);
         return "saved";
