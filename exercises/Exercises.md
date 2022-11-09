@@ -6,3 +6,4 @@
    * Add a student manually into your database using a INSERT script and check if it shows up on your list
    * How are the data type in Java match up with those in mysql?
 4. Create a PostMapping where you can remove a student. 
+5. Think of a way how you can update a student using a post request and implement it. 
