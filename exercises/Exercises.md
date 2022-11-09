@@ -7,3 +7,5 @@
    * How are the data type in Java match up with those in mysql?
 4. Create a PostMapping where you can remove a student. 
 5. Think of a way how you can update a student using a post request and implement it. 
+6. (Bonus Task) Create a Button or Link for each student within your listview that deletes that very user. 
+7. (Bonus Task) Create a Button or Link for each student within your listview that opens a form to edit that user.
