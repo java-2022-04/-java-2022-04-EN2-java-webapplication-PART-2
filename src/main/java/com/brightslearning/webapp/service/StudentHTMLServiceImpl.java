@@ -5,6 +5,8 @@ import com.brightslearning.webapp.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class StudentHTMLServiceImpl implements StudentHTMLService {
 
@@ -16,18 +18,29 @@ public class StudentHTMLServiceImpl implements StudentHTMLService {
     }
 
     @Override
-    public String displayAllStudents() {
+    public String studentListAsHtml() {
+        Iterable<Student> students = studentRepository.findAll();
+        return studentListAsHtml(students);
+    }
+
+    public String studentListAsHtml(Iterable<Student> students) {
         StringBuilder builder = new StringBuilder();
         builder.append("<h1>Students</h1>");
         builder.append("<ul>");
-        Iterable<Student> students = studentRepository.findAll();
         appendStudentList(builder, students);
         appendStudentInputForm(builder);
         return builder.toString();
     }
 
     @Override
-    public String displayEditStudentForm(Student student) {
+    public String studentEditFormHtml(String id) {
+        Optional<Student> studentOptional = studentRepository.findById(Long.parseLong(id));
+        if (studentOptional.isPresent()) return studentEditFormHtml(studentOptional.get());
+        return String.format("<h1>Student with id: %s does not exist</h1>", id);
+    }
+
+    @Override
+    public String studentEditFormHtml(Student student) {
         StringBuilder builder = new StringBuilder();
         builder.append("<form action='/update' method='POST'>");
         builder.append(String.format("<input name='id' value='%d'></input>", student.getId()));
@@ -39,6 +52,32 @@ public class StudentHTMLServiceImpl implements StudentHTMLService {
         builder.append("<input type='submit'></input>");
         builder.append("</form>");
         return builder.toString();
+    }
+
+    @Override
+    public String newStudentCreatedAsHtml(String name, String lastName, Integer age, String email, String occupation) {
+        Student student = new Student();
+        student.setName(name);
+        student.setLastName(lastName);
+        student.setAge(age);
+        student.setEmail(email);
+        student.setOccupation(occupation);
+        studentRepository.save(student);
+        return String.format("<h2>Student %s %s has been saved.</h2>",
+                name, lastName);
+    }
+
+
+    @Override
+    public String studentHasBeenUpdatedAsHtml(Student updatedStudent) {
+        return String.format("<h2>Student %s %s has been saved.</h2>",
+                updatedStudent.getName(), updatedStudent.getLastName());
+    }
+
+    @Override
+    public String studentHasBeenRemovedAsHtml(Long id) {
+        return String.format("<h2>Student with id: %s has been removed.</h2>%s",
+                id, studentListAsHtml());
     }
 
     private static void appendStudentList(StringBuilder builder, Iterable<Student> students) {

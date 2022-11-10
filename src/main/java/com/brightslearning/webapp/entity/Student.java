@@ -2,7 +2,6 @@ package com.brightslearning.webapp.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
@@ -47,11 +46,6 @@ public class Student {
     public void setOccupation(String occupation) {
         this.occupation = occupation;
     }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
@@ -62,5 +56,17 @@ public class Student {
 
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", occupation='" + occupation + '\'' +
+                '}';
     }
 }
