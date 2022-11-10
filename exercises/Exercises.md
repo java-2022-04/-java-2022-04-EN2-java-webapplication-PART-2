@@ -12,4 +12,7 @@
 7. (Bonus Task) Create a Button or Link for each student within your listview that opens a form to edit that student.
 ----------
 8. Refactor your code in a way that there is no repository call in you controller as well as the heavy string work abstracted away into services. Make it look clean and tidy.
-9. Implement a way how you can find a student by name. I want to input the name into a input field in your webapp. 
+9. Implement a way how you can find a student by name. I want to input the name into a input field in your webapp.
+   * checkout the spring jpa documentation https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.query-creation 
+10. Implement another search option where you can find a student by any of its attributes. 
+    * you could be using multiple input fields to do so, where the input for each would optional
