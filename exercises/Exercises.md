@@ -9,4 +9,7 @@
 4. Create a PostMapping where you can remove a student. 
 5. Think of a way how you can update a student using a post request and implement it. 
 6. (Bonus Task) Create a Button or Link for each student within your listview that deletes that very user. 
-7. (Bonus Task) Create a Button or Link for each student within your listview that opens a form to edit that user.
+7. (Bonus Task) Create a Button or Link for each student within your listview that opens a form to edit that student.
+----------
+8. Refactor your code in a way that there is no repository call in you controller as well as the heavy string work abstracted away into services. Make it look clean and tidy.
+9. Implement a way how you can find a student by name. I want to input the name into a input field in your webapp. 
