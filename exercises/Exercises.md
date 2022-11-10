@@ -5,6 +5,7 @@
    * Try to find out what methods are offered by your repository and use it
    * Add a student manually into your database using a INSERT script and check if it shows up on your list
    * How are the data type in Java match up with those in mysql?
+     * --> https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-type-conversions.html
 4. Create a PostMapping where you can remove a student. 
 5. Think of a way how you can update a student using a post request and implement it. 
 6. (Bonus Task) Create a Button or Link for each student within your listview that deletes that very user. 
