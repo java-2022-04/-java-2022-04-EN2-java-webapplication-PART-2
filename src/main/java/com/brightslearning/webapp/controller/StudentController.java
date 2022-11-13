@@ -17,17 +17,15 @@ import java.util.List;
 @Controller
 public class StudentController {
 
-    private final StudentRepository studentRepository;
     private final StudentHTMLService studentsHtmlService;
     private final StudentService studentService;
     private final SearchService searchService;
 
     @Autowired
-    public StudentController(StudentRepository studentRepository,
-                             StudentHTMLService studentsHtmlService,
+    public StudentController(StudentHTMLService studentsHtmlService,
                              StudentService studentService,
                              SearchService searchService) {
-        this.studentRepository = studentRepository;
+
         this.studentsHtmlService = studentsHtmlService;
         this.studentService = studentService;
         this.searchService = searchService;
@@ -81,13 +79,6 @@ public class StudentController {
     @ResponseBody
     public String searchByLastName(@RequestParam String lastName) {
         List<Student> students = searchService.findStudentByLastName(lastName);
-        return studentsHtmlService.studentListAsHtml(students);
-    }
-
-    @GetMapping("/searchany")
-    @ResponseBody
-    public String search(@RequestParam String name, @RequestParam String lastName) {
-        List<Student> students = studentRepository.findByNameAndLastName(name, lastName);
         return studentsHtmlService.studentListAsHtml(students);
     }
 

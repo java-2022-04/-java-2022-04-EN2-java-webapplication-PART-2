@@ -13,7 +13,7 @@ public class Course {
     private Long id;
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "course")
     private List<Student> students;
 
     public String getName() {

@@ -1,8 +1,6 @@
 package com.brightslearning.webapp.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Student {
@@ -14,6 +12,18 @@ public class Student {
     private String email;
     private Integer age;
     private String occupation;
+
+    @ManyToOne
+    private Course course;
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
 
     public String getLastName() {
         return lastName;

@@ -1,5 +1,6 @@
 package com.brightslearning.webapp.service;
 
+import com.brightslearning.webapp.entity.Course;
 import com.brightslearning.webapp.entity.Student;
 import com.brightslearning.webapp.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,8 +84,10 @@ public class StudentHTMLServiceImpl implements StudentHTMLService {
     private static void appendStudentList(StringBuilder builder, Iterable<Student> students) {
         for (Student student : students) {
             builder.append("<li>");
-            builder.append(String.format("%s , %s ",
-                    student.getName(), student.getLastName()));
+            Course course = student.getCourse();
+            builder.append(String.format("%s , %s, %s ",
+                    student.getName(), student.getLastName(),
+                    course == null ? "Not assigned to a Course yet" : course.getName()));
             Long studentId = student.getId();
             appendEditLinks(builder, studentId);
             builder.append("</li>");
