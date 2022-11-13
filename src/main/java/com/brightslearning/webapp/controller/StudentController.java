@@ -6,6 +6,7 @@ import com.brightslearning.webapp.service.StudentHTMLService;
 import com.brightslearning.webapp.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,8 +31,9 @@ public class StudentController {
         this.searchService = searchService;
     }
 
-    @GetMapping("/")
-    public String index() {
+    @GetMapping("/") //http://localhost:8080/?name=Bob
+    public String index(Model model, @RequestParam String name) {
+        model.addAttribute("name", name);
         return "index";
     }
 
