@@ -1,7 +1,6 @@
 package com.brightslearning.webapp.controller;
 
 import com.brightslearning.webapp.entity.Student;
-import com.brightslearning.webapp.repository.StudentRepository;
 import com.brightslearning.webapp.service.SearchService;
 import com.brightslearning.webapp.service.StudentHTMLService;
 import com.brightslearning.webapp.service.StudentService;
@@ -29,6 +28,11 @@ public class StudentController {
         this.studentsHtmlService = studentsHtmlService;
         this.studentService = studentService;
         this.searchService = searchService;
+    }
+
+    @GetMapping("/")
+    public String index() {
+        return "index";
     }
 
     @GetMapping("/students")
