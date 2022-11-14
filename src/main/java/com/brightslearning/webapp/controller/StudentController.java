@@ -7,10 +7,8 @@ import com.brightslearning.webapp.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,11 +35,24 @@ public class StudentController {
         return "index";
     }
 
-    @GetMapping("/students")
-    @ResponseBody
-    public String displayAllStudents() {
-        return studentsHtmlService.studentListAsHtml();
+    @PostMapping("/saveStudent") //http://localhost:8080/saveStudent
+    public String saveStudent(@RequestParam String name,
+                              @RequestParam String lastName,
+                              @RequestParam Integer age,
+                              @RequestParam String email,
+                              @RequestParam String occupation) {
+        Student student = studentService.saveNewStudent(name, lastName, age, email, occupation);
+        System.out.println(student);
+        return "studentsaved";
     }
+
+    @GetMapping("/students") //http://localhost:8080/students
+    public String displayAlleStudents(Model model) {
+        List<Student> students = studentService.allStudents();
+        model.addAttribute("students", students);
+        return "students";
+    }
+
 
     @PostMapping("/add")
     @ResponseBody
@@ -51,7 +62,8 @@ public class StudentController {
                              @RequestParam String email,
                              @RequestParam String occupation) {
 
-        return studentsHtmlService.newStudentCreatedAsHtml(name, lastName, age, email, occupation) +
+        Student student = studentService.saveNewStudent(name, lastName, age, email, occupation);
+        return studentsHtmlService.newStudentCreatedAsHtml(student) +
                 studentsHtmlService.studentListAsHtml();
     }
 

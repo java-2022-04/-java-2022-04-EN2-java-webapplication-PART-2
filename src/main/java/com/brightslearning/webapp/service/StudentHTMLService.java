@@ -8,7 +8,7 @@ public interface StudentHTMLService {
     String studentEditFormHtml(Student student);
     String studentEditFormHtml(String id);
 
-    String newStudentCreatedAsHtml(String name, String lastName, Integer age, String email, String occupation);
+    String newStudentCreatedAsHtml(Student student);
 
     String studentHasBeenUpdatedAsHtml(Student updatedStudent);
 

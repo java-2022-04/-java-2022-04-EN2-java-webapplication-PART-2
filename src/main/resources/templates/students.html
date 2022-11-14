@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="ISO-8859-1"/>
+    <link href="css/styles.css" rel="stylesheet"/>
+    <title>Welcome</title>
+</head>
+<tbody>
+<h4>Here is a list of all students/></h4>
+<table>
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>lastname</th>
+        <th>email</th>
+        <th>age</th>
+        <th>occupation</th>
+    </tr>
+    </thead>
+    <tr th:each="student: ${students}">
+        <td th:text="${student.id}"/>
+        <td th:text="${student.name}"/>
+        <td th:text="${student.lastName}"/>
+        <td th:text="${student.age}"/>
+        <td th:text="${student.email}"/>
+        <td th:text="${student.occupation}"/>
+    </tr>
+    <tr>
+        <form action="/saveStudent" method="post">
+            <td><input placeholder="id" value="id" /></td>
+            <td><input name='name' value="name" /></td>
+            <td><input name='lastName' value="lastName" /></td>
+            <td><input name='age' value="age" /></td>
+            <td><input name='email' value="email" /></td>
+            <td><input name='occupation' value="occupation" /></td>
+            <td><input type='submit'></td>
+        </form>
+    </tr>
+</table>
+</tbody>
+</html>

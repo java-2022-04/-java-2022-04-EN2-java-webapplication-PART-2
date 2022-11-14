@@ -56,18 +56,10 @@ public class StudentHTMLServiceImpl implements StudentHTMLService {
     }
 
     @Override
-    public String newStudentCreatedAsHtml(String name, String lastName, Integer age, String email, String occupation) {
-        Student student = new Student();
-        student.setName(name);
-        student.setLastName(lastName);
-        student.setAge(age);
-        student.setEmail(email);
-        student.setOccupation(occupation);
-        studentRepository.save(student);
+    public String newStudentCreatedAsHtml(Student student) {
         return String.format("<h2>Student %s %s has been saved.</h2>",
-                name, lastName);
+                student.getName(), student.getLastName());
     }
-
 
     @Override
     public String studentHasBeenUpdatedAsHtml(Student updatedStudent) {
