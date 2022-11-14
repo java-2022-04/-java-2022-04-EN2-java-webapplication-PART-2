@@ -40,9 +40,9 @@ public class StudentController {
                               @RequestParam String lastName,
                               @RequestParam Integer age,
                               @RequestParam String email,
-                              @RequestParam String occupation) {
+                              @RequestParam String occupation, Model model) {
         Student student = studentService.saveNewStudent(name, lastName, age, email, occupation);
-        System.out.println(student);
+        model.addAttribute("student", student);
         return "studentsaved";
     }
 
